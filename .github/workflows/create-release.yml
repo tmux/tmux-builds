@@ -134,7 +134,7 @@ jobs:
               git
 
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set versions
         run: |
@@ -183,7 +183,7 @@ jobs:
           tar -czf "${{ steps.archive_name.outputs.archive_name }}" -C ${{ env.PREFIX }}/bin tmux
 
       - name: Upload binary
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ steps.archive_name.outputs.archive_name }}
           path: ${{ steps.archive_name.outputs.archive_name }}
@@ -197,14 +197,14 @@ jobs:
       TMUX_VERSION: ${{ needs.setup.outputs.tmux_version }}
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Collect licenses
         run: |
           ./scripts/collect_licenses.sh
 
       - name: Upload licenses artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: LICENSES.tar.gz
           path: ${{ env.PREFIX }}/LICENSES.tar.gz
@@ -222,7 +222,7 @@ jobs:
       IS_PREVIEW: ${{ needs.setup.outputs.is_preview }}
       TMUX_SHA: ${{ needs.setup.outputs.upstream_head_sha }}
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           merge-multiple: true
           path: dist

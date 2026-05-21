@@ -130,8 +130,7 @@ jobs:
           brew update
           brew install \
               automake \
-              bison \
-              git
+              bison
 
       - name: Checkout repo
         uses: actions/checkout@v6

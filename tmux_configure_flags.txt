@@ -1,0 +1,1 @@
+./configure CFLAGS="-I/usr/include -fno-PIE" LDFLAGS="-static -no-pie -L/usr/lib" LIBS="-lfts"

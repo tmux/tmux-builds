@@ -143,6 +143,7 @@ jobs:
           echo "LIBEVENT_VERSION=$LIBEVENT_VERSION" >> "$GITHUB_ENV"
           echo "NCURSES_VERSION=$NCURSES_VERSION" >> "$GITHUB_ENV"
           echo "UTF8PROC_VERSION=$UTF8PROC_VERSION" >> "$GITHUB_ENV"
+          echo "JEMALLOC_VERSION=$JEMALLOC_VERSION" >> "$GITHUB_ENV"
 
       - name: Build musl
         if: matrix.os == 'linux'
@@ -159,6 +160,10 @@ jobs:
       - name: Build utf8proc
         if: matrix.os == 'macos'
         run: ./scripts/build_utf8proc.sh
+
+      - name: Build jemalloc
+        if: matrix.os == 'macos'
+        run: ./scripts/build_jemalloc.sh
 
       - name: Build tmux
         run: ./scripts/build_tmux.sh

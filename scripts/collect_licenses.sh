@@ -30,6 +30,10 @@ rm -rf "ncurses-${NCURSES_VERSION}" "ncurses-${NCURSES_VERSION}.tar.gz"
 echo "Collecting utf8proc license..."
 wget -q "https://raw.githubusercontent.com/JuliaStrings/utf8proc/v${UTF8PROC_VERSION}/LICENSE.md" -O "$PREFIX/licenses/LICENSE.utf8proc"
 
+# jemalloc
+echo "Collecting jemalloc license..."
+wget -q "https://raw.githubusercontent.com/jemalloc/jemalloc/${JEMALLOC_VERSION}/COPYING" -O "$PREFIX/licenses/COPYING.jemalloc"
+
 # tmux
 echo "Collecting tmux license..."
 if [[ "${TMUX_VERSION}" == "preview" ]]; then

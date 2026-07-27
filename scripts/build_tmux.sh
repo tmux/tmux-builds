@@ -48,6 +48,9 @@ if $IS_MACOS; then
         --enable-utf8proc
         LIBUTF8PROC_CFLAGS="-I${PREFIX}/include"
         LIBUTF8PROC_LIBS="${PREFIX}/lib/libutf8proc.a"
+        --enable-jemalloc
+        JEMALLOC_CFLAGS="-I${PREFIX}/include"
+        JEMALLOC_LIBS="${PREFIX}/lib/libjemalloc.a"
     )
 else
     CONFIGURE_FLAGS+=(

@@ -21,7 +21,8 @@ cd "jemalloc-${JEMALLOC_VERSION}"
     --prefix="$PREFIX" \
     --includedir="${PREFIX}/include" \
     --libdir="${PREFIX}/lib" \
-    --disable-shared
+    --disable-shared \
+    --with-jemalloc-prefix=
 
 make -j$(sysctl -n hw.ncpu)
 make install_bin install_include install_lib

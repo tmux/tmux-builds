@@ -13,7 +13,26 @@ fi
 
 mkdir -p "$PREFIX/src"
 cd "$PREFIX/src"
-wget "https://invisible-island.net/archives/ncurses/ncurses-${NCURSES_VERSION}.tar.gz"
+
+# invisible-island.net can be unreliable at times, so we try multiple mirrors for downloading ncurses
+NCURSES_TARBALL="ncurses-${NCURSES_VERSION}.tar.gz"
+NCURSES_DOWNLOAD_URLS=(
+    "https://invisible-island.net/archives/ncurses/${NCURSES_TARBALL}"
+    "https://ftp.gnu.org/gnu/ncurses/${NCURSES_TARBALL}"
+)
+download_succeeded=false
+for download_url in "${NCURSES_DOWNLOAD_URLS[@]}"; do
+    if wget --tries=3 "$download_url"; then
+        download_succeeded=true
+        break
+    fi
+    echo "Download from $download_url failed, trying next mirror" >&2
+done
+if [[ "$download_succeeded" != true ]]; then
+    echo "Error: could not download $NCURSES_TARBALL from any mirror" >&2
+    exit 1
+fi
+
 tar xzf "ncurses-${NCURSES_VERSION}.tar.gz"
 cd "ncurses-${NCURSES_VERSION}"
 
